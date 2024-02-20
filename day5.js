@@ -39,14 +39,30 @@ function  verify(){
         },1000)
     })
 }
-createUser().then(function(a){
-    console.log(a)
-    return getID()
-})
-.then(function(a){
-    console.log(a)
-    return verify()
-})
-.then(function(a){
-    console.log(a)
-})
+// createUser().then(function(a){
+//     console.log(a)
+//     return getID()
+// })
+// .then(function(a){
+//     console.log(a)
+//     return verify()
+// })
+// .then(function(a){
+//     console.log(a)
+// })
+
+
+
+// async await 
+
+async function main(){
+    let p1 = await createUser()
+    console.log(p1)
+    let p2 = await getID()
+    console.log(p2)
+    let p3 =  await verify()
+    console.log(p3)
+}
+main()
+
+
