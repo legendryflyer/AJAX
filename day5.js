@@ -20,14 +20,14 @@
 function createUser(){
     return new Promise(function(resolve,reject){
         setTimeout(function(){
-            console.log("user created")
+            resolve("user created")
         },3000)
     })
 }
 function getID(){
     return  new Promise(function(resolve,reject){
         setTimeout(function(){
-            console.log("get id")
+            resolve("get id")
         },2000)
         
     })
@@ -35,34 +35,38 @@ function getID(){
 function  verify(){
     return new Promise(function(resolve,reject){
         setTimeout(function(){
-            console.log("user verified")
+            resolve("user verified")
         },1000)
     })
 }
-// createUser().then(function(a){
-//     console.log(a)
-//     return getID()
-// })
-// .then(function(a){
-//     console.log(a)
-//     return verify()
-// })
-// .then(function(a){
-//     console.log(a)
-// })
+createUser().then(function(a){
+    console.log(a)
+    return getID()
+})
+.then(function(a){
+    console.log(a)
+    return verify()
+})
+.then(function(a){
+    console.log(a)
+})
 
 
 
 // async await 
 
-async function main(){
-    let p1 = await createUser()
-    console.log(p1)
-    let p2 = await getID()
-    console.log(p2)
-    let p3 =  await verify()
-    console.log(p3)
-}
-main()
+// async function main(){
+//     let p1 = await createUser()
+//     console.log(p1)
+//     let p2 = await getID()
+//     console.log(p2)
+//     let p3 =  await verify()
+//     console.log(p3)
+// }
+// main()
+
+
+
+
 
 
