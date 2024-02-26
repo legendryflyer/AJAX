@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //async => sync
+        // multipleuser ==> single ussr ==> then show data of user on the web page 
+
+        function getMultipleUser(page) {
+            return fetch(`https://reqres.in/api/users?page=${page}`)
+                .then(function (responce) {
+                    // console.log(responce.json)
+                    return responce.json()
+
+                })
+                .then(function (responce) {
+                    return responce.data
+                })
+
+        }
+        // getMultipleUser()
+
+        function getSingleUser(id) {
+            return fetch(`https://reqres.in/api/users/${id}`)
+                .then(function (responce) {
+                    return responce.json()
+                })
+
+                .then(function (responce) {
+                    return (responce.data)
+                })
+        }
+
+        // showuser
+        function showInfo(el) {
+            document.write(`<h1>${el.first_name}</h1>`)
+            document.write(`<h1>${el.last_name}</h1>`)
+            document.write(`<h1>${el.id}</h1>`)
+            document.write(`<h1>${el.email}</h1>`)
+            document.write(`<img src=${el.avatar}>`)
+        }
+
+        async function info() {
+            let dataArray = await getMultipleUser(1)
+            let idUserInfo = await getSingleUser(dataArray[4].id)
+            showInfo(idUserInfo)
+        }
+
+    </script>
+
+
+</body>
+
+</html>
