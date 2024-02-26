@@ -19,16 +19,16 @@
 // getMultipleUser()
 
 
-// function getMultipleUser(page) {
-//     return fetch(`https://reqres.in/api/users?page=${page}`)
-//         .then(function (responce) {
-//             return (responce.json())
-//         })
-//         .then(function (responce) {
-//             return (responce.data)
-//         })
-// }
-// getMultipleUser()
+function getMultipleUser(page) {
+    return fetch(`https://reqres.in/api/users?page=${page}`)
+        .then(function (responce) {
+            return (responce.json())
+        })
+        .then(function (responce) {
+            return (responce.data)
+        })
+}
+// getMultipleUser(2)
 
 
 function getSingleUser(id) {
@@ -40,4 +40,25 @@ function getSingleUser(id) {
             return (res.data)
         })
 }
-getSingleUser(2)
+// getSingleUser(2)
+
+
+// show info 
+function showInfo(el) {
+    document.write(`<h1>${el.first_name}</h1>`)
+    document.write(`<h1>${el.last_name}</h1>`)
+    document.write(`<h1>${el.id}</h1>`)
+    document.write(`<h1>${el.email}</h1>`)
+    document.write(`<img src=${el.avatar}>`)
+}
+// showInfo()
+
+
+async function info(){
+    let dataArray=await getMultipleUser(1)
+    let idUserInfo=await getSingleUser(dataArray[4].id)
+    showInfo(idUserInfo)
+}
+
+
+info()
