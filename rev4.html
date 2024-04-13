@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function getUserByPage(pageNo) {
+            return fetch(`https://reqres.in/api/users?page=${pageNo}`)
+                .then((res) => {
+                    return res.json()
+                })
+                .then((res) => {
+                    console.log(res.data)
+                    console.log(res.data[0].id)
+                    return res.data[0].id
+                })
+        }
+        //getUserByPage(2)
+
+        function getUserById(id) {
+            return fetch(`https://reqres.in/api/users/$id?delay=3`)
+                .then((res) => {
+                    return res.json
+                })
+                .then((res) => {
+                    return res.data
+                })
+        }
+
+
+        function renderHtml(el) {
+            document.write(`<h1>${el.first_name}</h1>`)
+            document.write(`<p>${el.last_name}</p>`)
+            document.write(`<p>${el.email}</p>`)
+            document.write(`<p>${el.id}</p>`)
+            document.write(`<img src=${el.avatar}>`)
+
+        }
+
+//        getUserByPage(1)
+//            .then((id) => {
+//                return getUserById(id)
+//            })
+//            .then((obj) => {
+//                //console.log(el)
+//                renderHtml(obj)
+//            })
+        async function  main(pageNo){
+            let id = await getUserByPage(pageNo)
+            let user =await getUserById(id)
+            renderHtml(user)
+        }
+        main(2)
+
+    </script>
+</body>
+
+</html>
