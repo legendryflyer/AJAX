@@ -52,36 +52,36 @@
 
 // promises
 
-let pro = new Promise(function(resolve,reject){
-    let a=1
-    let b=2
-    if(a===1){
-        resolve ('true')
-    }
-    else{
-        reject('false')
-    }
-})
+// let pro = new Promise(function(resolve,reject){
+//     let a=1
+//     let b=2
+//     if(a===1){
+//         resolve ('true')
+//     }
+//     else{
+//         reject('false')
+//     }
+// })
 
-pro.then(function(srt){
-    console.log(`this is ${srt}`)
-},function(srt){
- console.log(`error ${srt}`)
-})
+// pro.then(function(srt){
+//     console.log(`this is ${srt}`)
+// },function(srt){
+//  console.log(`error ${srt}`)
+// })
 
 
 
-function getInfo(){
-    setTimeout(function(){
-        console.log("user created")
-        setTimeout(function(){
-            console.log("get id")
-            setTimeout(function(){
-                console.log("get info")
-            },1000)
-        },2000)
-    },3000)
-}
+// function getInfo(){
+//     setTimeout(function(){
+//         console.log("user created")
+//         setTimeout(function(){
+//             console.log("get id")
+//             setTimeout(function(){
+//                 console.log("get info")
+//             },1000)
+//         },2000)
+//     },3000)
+// }
 
 // getInfo()
 
@@ -104,7 +104,7 @@ function getID(){
 function getInfo(){
     return new Promise(function(resolve,reject){
         setTimeout(function(){
-            resolve("get get info")
+            reject("get get info")
         },1000)
     })
 }
@@ -124,12 +124,79 @@ function getInfo(){
 // })
 
 
-async function getUserInfo(){
-    let a = await userCreated()
-    console.log(a)
-    let b = await getID()
-    console.log(b)
-    let  c = await getInfo()
-    console.log(c)
-}
-getUserInfo()
+// async function getUserInfo(){
+//     let a = await userCreated()
+//     console.log(a)
+//     let b = await getID()
+//     console.log(b)
+//     let  c = await getInfo()
+//     console.log(c)
+// }
+// getUserInfo()
+
+// Promice.all
+// Promise.all([
+//     userCreated(),
+//     getID(),
+//     getInfo()
+// ])
+// .then(function(resultsArray){
+//     console.log(resultsArray)
+// })
+// .catch(function(error){
+//     console.log(error)
+// })
+
+// // Promice.allSetalled   
+// let p1 = Promise.resolve(5)
+// let p2 = Promise.reject("p2")
+
+// Promise.allSettled([p1, p2]).then((result)=>{
+//     result.forEach((item)=>{
+//         if (item.status === "fulfilled"){
+//             console.log(`${item.value} is fulfilled`)
+//         } else {
+//             console.log(`${item.reason} is rejected`)
+//         }
+//     })
+// })
+
+Promise.allSettled([
+    Promise.resolve("hellow"),
+    Promise.resolve("hellow2"),
+    Promise.reject("Error")
+])
+.then((str)=>{
+    console.log(str)
+})
+
+
+
+// Promise.race  first one to resolve or reject  will be the final result of this promise race
+
+Promise.race([
+    Promise.resolve(3),
+    Promise.reject('fail'),
+    Promise.resolve(4)
+])
+.then((res)=>{
+    console.log(res)
+})
+.catch((res)=>{
+    console.log(res)
+})
+
+
+// promise.any()  reject states are ignored 
+
+Promise.any([
+    Promise.resolve(10), 
+    Promise.reject(15),
+    Promise.resolve(20),
+    Promise.resolve(30)
+])
+.then((str)=>{
+    console.log(str)
+})
+
+
