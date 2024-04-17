@@ -23,9 +23,9 @@
         //getUserByPage(2)
 
         function getUserById(id) {
-            return fetch(`https://reqres.in/api/users/$id?delay=3`)
+            return fetch(`https://reqres.in/api/users/${id}`)
                 .then((res) => {
-                    return res.json
+                    return res.json()
                 })
                 .then((res) => {
                     return res.data
